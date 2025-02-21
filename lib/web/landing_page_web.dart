@@ -209,6 +209,52 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               ],
             ),
           ),
+          //Third Page
+          Container(
+            height: heightDevice / 1.3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SanBold("What I do?", 40.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      shadowColor: Colors.greenAccent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/webL.png",
+                              height: 200.0,
+                              width: 200.0,
+                            ),
+                            SizedBox(height: 10.0),
+                            SanBold("Web development", 15.0),
+                            Sans(
+                              "I specialize in crafting high-performance,",
+                              12.0,
+                            ),
+                            Sans(
+                              "user-friendly, and scalable web solutions",
+                              12.0,
+                            ),
+                            Sans("tailored to your business needs.", 12.0),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
