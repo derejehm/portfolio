@@ -112,10 +112,101 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           //Second Page
           Container(
             height: heightDevice / 1.5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [SanBold("About Me", 40.0)],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset("assets/web.jpg", height: heightDevice / 1.7),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SanBold("About Me", 40.0),
+                    SizedBox(height: 15.0),
+                    Sans(
+                      "Hello! I'm Dereje Hailemariam I specialized in flutter development.",
+                      15.0,
+                    ),
+                    Sans(
+                      "I strive to ensure astounding performance  with  state of  ",
+                      15.0,
+                    ),
+                    Sans(
+                      "the art security for Android, Ios, Web, Mac, Linux and Windows",
+                      15.0,
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.greenAccent,
+                              style: BorderStyle.solid,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          padding: EdgeInsets.all(7.0),
+                          child: Sans("Flutter", 15.0),
+                        ),
+                        SizedBox(width: 7.0),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.greenAccent,
+                              style: BorderStyle.solid,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          padding: EdgeInsets.all(7.0),
+                          child: Sans("Firebase", 15.0),
+                        ),
+                        SizedBox(width: 7.0),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.greenAccent,
+                              style: BorderStyle.solid,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          padding: EdgeInsets.all(7.0),
+                          child: Sans("Android", 15.0),
+                        ),
+                        SizedBox(width: 7.0),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.greenAccent,
+                              style: BorderStyle.solid,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          padding: EdgeInsets.all(7.0),
+                          child: Sans("Ios", 15.0),
+                        ),
+                        SizedBox(width: 7.0),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.greenAccent,
+                              style: BorderStyle.solid,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          padding: EdgeInsets.all(7.0),
+                          child: Sans("Windows", 15.0),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
