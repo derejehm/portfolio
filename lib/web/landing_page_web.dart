@@ -250,6 +250,87 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                         ),
                       ),
                     ),
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      shadowColor: Colors.greenAccent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/app.png",
+                              height: 200.0,
+                              width: 200.0,
+                            ),
+                            SizedBox(height: 10.0),
+                            SanBold("App development", 15.0),
+                            Sans("Transform your ideas into powerful ", 12.0),
+                            Sans(
+                              "mobile applications ,I build custom iOS  ",
+                              12.0,
+                            ),
+                            Sans("and Android apps .", 12.0),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      shadowColor: Colors.greenAccent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/firebase.png",
+                              height: 200.0,
+                              width: 200.0,
+                            ),
+                            SizedBox(height: 10.0),
+                            SanBold("Back-end development", 15.0),
+                            Sans(
+                              "Power your applications with a robust ",
+                              12.0,
+                            ),
+                            Sans("and scalable back-end ,I design and  ", 12.0),
+                            Sans("develop secure APIs", 12.0),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      elevation: 30,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      shadowColor: Colors.greenAccent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/data.jpg",
+                              height: 200.0,
+                              width: 200.0,
+                            ),
+                            SizedBox(height: 10.0),
+                            SanBold("Data Analytics", 15.0),
+                            Sans("Unlock valuable insights with ", 12.0),
+                            Sans("our advanced data analytics ", 12.0),
+                            Sans("solutions.", 12.0),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
