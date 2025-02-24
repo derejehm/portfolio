@@ -12,6 +12,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
+    var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: Drawer(),
       backgroundColor: Colors.white,
@@ -116,7 +117,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("assets/web.jpg", height: heightDevice / 1.7),
+                Image.asset("assets/web.jpg", height: heightDevice / 1.9),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -219,123 +220,93 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      shadowColor: Colors.greenAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/webL.png",
-                              height: 200.0,
-                              width: 200.0,
-                            ),
-                            SizedBox(height: 10.0),
-                            SanBold("Web development", 15.0),
-                            Sans(
-                              "I specialize in crafting high-performance,",
-                              12.0,
-                            ),
-                            Sans(
-                              "user-friendly, and scalable web solutions",
-                              12.0,
-                            ),
-                            Sans("tailored to your business needs.", 12.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/webL.png",
+                      text: "Web development",
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      shadowColor: Colors.greenAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/app.png",
-                              height: 200.0,
-                              width: 200.0,
-                            ),
-                            SizedBox(height: 10.0),
-                            SanBold("App development", 15.0),
-                            Sans("Transform your ideas into powerful ", 12.0),
-                            Sans(
-                              "mobile applications ,I build custom iOS  ",
-                              12.0,
-                            ),
-                            Sans("and Android apps .", 12.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/app.png",
+                      text: "App development",
+                      fit: BoxFit.contain,
+                      reverse: true,
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      shadowColor: Colors.greenAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/firebase.png",
-                              height: 200.0,
-                              width: 200.0,
-                            ),
-                            SizedBox(height: 10.0),
-                            SanBold("Back-end development", 15.0),
-                            Sans(
-                              "Power your applications with a robust ",
-                              12.0,
-                            ),
-                            Sans("and scalable back-end ,I design and  ", 12.0),
-                            Sans("develop secure APIs", 12.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/firebase.png",
+                      text: "Back-end development",
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      shadowColor: Colors.greenAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "assets/data.jpg",
-                              height: 200.0,
-                              width: 200.0,
-                            ),
-                            SizedBox(height: 10.0),
-                            SanBold("Data Analytics", 15.0),
-                            Sans("Unlock valuable insights with ", 12.0),
-                            Sans("our advanced data analytics ", 12.0),
-                            Sans("solutions.", 12.0),
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/data.jpg",
+                      text: "Data Analytics",
+                      fit: BoxFit.contain,
                     ),
                   ],
                 ),
               ],
             ),
           ),
+          //Forth Page
+          Container(
+            height: heightDevice,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SanBold("Contact Me", 40.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        TextForm(
+                          heading: "First Name",
+                          hintText: "Please enter your first name",
+                          width: 350,
+                        ),
+                        SizedBox(height: 15.0),
+                        TextForm(
+                          heading: "Email",
+                          hintText: "Please enter your E-mail",
+                          width: 350,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        TextForm(
+                          heading: "Last Name",
+                          hintText: "Please enter your last name",
+                          width: 350,
+                        ),
+                        SizedBox(height: 15.0),
+                        TextForm(
+                          heading: "Phone number",
+                          hintText: "Please enter your phone number",
+                          width: 350,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                TextForm(
+                  heading: "Message",
+                  width: widthDevice / 1.5,
+                  maxLine: 10.0,
+                  hintText: "Please enter your message",
+                ),
+                MaterialButton(
+                  elevation: 20.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  height: 60.0,
+                  minWidth: 200.0,
+                  color: Colors.greenAccent,
+                  child: SanBold("Submit", 20.0),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20.0),
         ],
       ),
     );
