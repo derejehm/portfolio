@@ -1,8 +1,10 @@
+import 'package:dynamic_path_url_strategy/dynamic_path_url_strategy.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/mobile/landing_page_mobile.dart';
-import 'package:portfolio/web/landing_page_web.dart';
+import 'package:portfolio/routes.dart';
 
 void main() {
+  setPathUrlStrategy();
+
   runApp(const MyApp());
 }
 
@@ -12,15 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth > 800) {
-            return LandingPageWeb();
-          } else {
-            return LandingPageMobile();
-          }
-        },
-      ),
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) => Routes.generateRoute(settings),
+      initialRoute: '/',
     );
   }
 }
