@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TabsWeb extends StatefulWidget {
   final title;
-  const TabsWeb(this.title, {super.key});
+  final route;
+  const TabsWeb({super.key, this.title, this.route});
 
   @override
   State<TabsWeb> createState() => _TabsWebState();
@@ -13,32 +14,39 @@ class _TabsWebState extends State<TabsWeb> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) {
-        setState(() {
-          isSelected = true;
-        });
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(widget.route);
       },
-      onExit: (_) {
-        setState(() {
-          isSelected = false;
-        });
-      },
-      child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.elasticIn,
-        style:
-            isSelected
-                ? GoogleFonts.oswald(
-                  shadows: [Shadow(color: Colors.black, offset: Offset(0, -8))],
-                  fontSize: 25.0,
-                  color: Colors.transparent,
-                  decoration: TextDecoration.underline,
-                  decorationThickness: 2,
-                  decorationColor: Colors.greenAccent,
-                )
-                : GoogleFonts.oswald(color: Colors.black, fontSize: 20.0),
-        child: Text(widget.title),
+      child: MouseRegion(
+        onEnter: (_) {
+          setState(() {
+            isSelected = true;
+          });
+        },
+        onExit: (_) {
+          setState(() {
+            isSelected = false;
+          });
+        },
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.elasticIn,
+          style:
+              isSelected
+                  ? GoogleFonts.oswald(
+                    shadows: [
+                      Shadow(color: Colors.black, offset: Offset(0, -8)),
+                    ],
+                    fontSize: 25.0,
+                    color: Colors.transparent,
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 2,
+                    decorationColor: Colors.greenAccent,
+                  )
+                  : GoogleFonts.oswald(color: Colors.black, fontSize: 20.0),
+          child: Text(widget.title),
+        ),
       ),
     );
   }
@@ -67,7 +75,9 @@ class _TabsMobileState extends State<TabsMobile> {
         widget.text,
         style: GoogleFonts.openSans(fontSize: 20.0, color: Colors.white),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(widget.route);
+      },
     );
   }
 }
@@ -141,27 +151,31 @@ class TextForm extends StatelessWidget {
   }
 }
 
-class AnimatedCardWeb extends StatefulWidget {
+class AnimatedCard extends StatefulWidget {
   final imagePath;
   final text;
   final fit;
   final reverse;
+  final height;
+  final width;
 
-  const AnimatedCardWeb({
+  const AnimatedCard({
     super.key,
     @required this.imagePath,
     @required this.text,
     this.fit,
     this.reverse,
+    this.height,
+    this.width,
   });
 
   @override
-  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+  State<AnimatedCard> createState() => _AnimatedCardState();
 }
 
-class _AnimatedCardWebState extends State<AnimatedCardWeb>
+class _AnimatedCardState extends State<AnimatedCard>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller = AnimationController(
+  late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(seconds: 4),
   )..repeat(reverse: true);
@@ -201,9 +215,9 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
             children: [
               Image.asset(
                 widget.imagePath,
-                height: 200.0,
-                width: 200.0,
-                fit: widget.fit == null ? null : widget.fit,
+                height: widget.height ?? 200.0,
+                width: widget.width ?? 200.0,
+                fit: widget.fit,
               ),
               SizedBox(height: 10.0),
               SanBold(widget.text, 15.0),
