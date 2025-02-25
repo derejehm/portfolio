@@ -3,6 +3,19 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+urlLauncher(String imgPhath, String url) {
+  return IconButton(
+    icon: SvgPicture.asset(
+      imgPhath,
+      colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
+      width: 35,
+    ),
+    onPressed: () async {
+      await launchUrl(Uri.parse(url));
+    },
+  );
+}
+
 class TabsWeb extends StatefulWidget {
   final title;
   final route;
@@ -239,19 +252,6 @@ class DrawerWeb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    urlLauncher(String imgPhath, String url) {
-      return IconButton(
-        icon: SvgPicture.asset(
-          imgPhath,
-          colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
-          width: 35,
-        ),
-        onPressed: () async {
-          await launchUrl(Uri.parse(url));
-        },
-      );
-    }
-
     return Drawer(
       backgroundColor: Colors.white,
       child: Column(
@@ -269,6 +269,55 @@ class DrawerWeb extends StatelessWidget {
           SizedBox(height: 15.0),
           SanBold("Dereje Hailemariam", 25.0),
           SizedBox(height: 15.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              urlLauncher(
+                "instagram.svg",
+                "https://www.instagram.com/dereje013/",
+              ),
+              urlLauncher(
+                "linkedin.svg",
+                "https://www.linkedin.com/in/dereje-hailemariam-3876a112a/",
+              ),
+              urlLauncher("github.svg", "https://github.com/derejehm/"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DrawerMobile extends StatelessWidget {
+  const DrawerMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DrawerHeader(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(width: 2.0, color: Colors.black),
+              ),
+              child: Image.asset("assets/derejepic_circle.png"),
+            ),
+          ),
+          TabsMobile(text: "Home", route: "/"),
+          SizedBox(height: 20.0),
+          TabsMobile(text: "Works", route: "/works"),
+          SizedBox(height: 20.0),
+          TabsMobile(text: "Blog", route: "/blog"),
+          SizedBox(height: 20.0),
+          TabsMobile(text: "About", route: "/about"),
+          SizedBox(height: 20.0),
+          TabsMobile(text: "Contact", route: "/contact"),
+          SizedBox(height: 40.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

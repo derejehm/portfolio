@@ -52,47 +52,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
         elevation: 0.0,
         iconTheme: IconThemeData(size: 35.0, color: Colors.black),
       ),
-      endDrawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DrawerHeader(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(width: 2.0, color: Colors.black),
-                ),
-                child: Image.asset("assets/derejepic_circle.png"),
-              ),
-            ),
-            TabsMobile(text: "Home", route: "/"),
-            SizedBox(height: 20.0),
-            TabsMobile(text: "Works", route: "/works"),
-            SizedBox(height: 20.0),
-            TabsMobile(text: "Blog", route: "/blog"),
-            SizedBox(height: 20.0),
-            TabsMobile(text: "About", route: "/about"),
-            SizedBox(height: 20.0),
-            TabsMobile(text: "Contact", route: "/contact"),
-            SizedBox(height: 40.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                urlLauncher(
-                  "instagram.svg",
-                  "https://www.instagram.com/dereje013/",
-                ),
-                urlLauncher(
-                  "linkedin.svg",
-                  "https://www.linkedin.com/in/dereje-hailemariam-3876a112a/",
-                ),
-                urlLauncher("github.svg", "https://github.com/derejehm/"),
-              ],
-            ),
-          ],
-        ),
-      ),
+      endDrawer: DrawerMobile(),
       body: ListView(
         children: [
           //Intro , First Section
