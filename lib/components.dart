@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TabsWeb extends StatefulWidget {
   final title;
@@ -227,6 +229,61 @@ class _AnimatedCardState extends State<AnimatedCard>
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DrawerWeb extends StatelessWidget {
+  const DrawerWeb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    urlLauncher(String imgPhath, String url) {
+      return IconButton(
+        icon: SvgPicture.asset(
+          imgPhath,
+          colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
+          width: 35,
+        ),
+        onPressed: () async {
+          await launchUrl(Uri.parse(url));
+        },
+      );
+    }
+
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 72,
+            backgroundColor: Colors.greenAccent,
+            child: CircleAvatar(
+              radius: 70.0,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/derejepic_circle.png"),
+            ),
+          ),
+          SizedBox(height: 15.0),
+          SanBold("Dereje Hailemariam", 25.0),
+          SizedBox(height: 15.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              urlLauncher(
+                "instagram.svg",
+                "https://www.instagram.com/dereje013/",
+              ),
+              urlLauncher(
+                "linkedin.svg",
+                "https://www.linkedin.com/in/dereje-hailemariam-3876a112a/",
+              ),
+              urlLauncher("github.svg", "https://github.com/derejehm/"),
+            ],
+          ),
+        ],
       ),
     );
   }
