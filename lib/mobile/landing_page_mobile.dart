@@ -56,20 +56,20 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
       body: ListView(
         children: [
           //Intro , First Section
+          CircleAvatar(
+            radius: 117.0,
+            backgroundColor: Colors.greenAccent,
+            child: CircleAvatar(
+              radius: 110.0,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/derejepic_circle.png"),
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 117.0,
-                  backgroundColor: Colors.greenAccent,
-                  child: CircleAvatar(
-                    radius: 110.0,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage("assets/derejepic_circle.png"),
-                  ),
-                ),
                 SizedBox(height: 25.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +95,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                 ),
                 SizedBox(height: 15.0),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Wrap(
                       direction: Axis.vertical,
@@ -125,10 +125,10 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
           //About me , Second Section
           SizedBox(height: 90.0),
           Padding(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
                 SanBold("About me", 35.0),
@@ -137,7 +137,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                   15.0,
                 ),
                 Sans(
-                  "I strive to ensure astounding performance  with  state of  ",
+                  "I strive to ensure astounding performance  with  state of ",
                   15.0,
                 ),
                 Sans(
