@@ -245,6 +245,7 @@ class _AnimatedCardState extends State<AnimatedCard>
       position: _animation,
       child: Card(
         elevation: 30,
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
           side: BorderSide(color: Colors.greenAccent),
@@ -260,6 +261,7 @@ class _AnimatedCardState extends State<AnimatedCard>
                 height: widget.height ?? 200.0,
                 width: widget.width ?? 200.0,
                 fit: widget.fit,
+                filterQuality: FilterQuality.high,
               ),
               SizedBox(height: 10.0),
               widget.text == null ? SizedBox() : SanBold(widget.text, 15.0),
