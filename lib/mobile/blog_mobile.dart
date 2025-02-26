@@ -55,6 +55,7 @@ class _BlogMobileState extends State<BlogMobile> {
               BlogPost(),
               BlogPost(),
               BlogPost(),
+              SizedBox(height: 20.0),
             ],
           ),
         ),
