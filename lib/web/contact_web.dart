@@ -144,15 +144,19 @@ class _ContactWebState extends State<ContactWeb> {
                   onPressed: () async {
                     final addData = new AddDataFirestore();
                     if (formkey.currentState!.validate()) {
-                      await addData.addResponse(
+                      if (await addData.addResponse(
                         _firstnameController.text,
                         _lastnameController.text,
                         _emailController.text,
                         _phoneController.text,
                         _messageController.text,
-                      );
-                      formkey.currentState!.reset();
-                      DialogError(context);
+                      )) {
+                        formkey.currentState!.reset();
+                        DialogError(context, "Message sent successfully");
+                      } else {
+                        formkey.currentState!.reset();
+                        DialogError(context, "Message sent failed");
+                      }
                     }
                   },
                 ),

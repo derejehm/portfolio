@@ -1,1 +1,31 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"dereje-hailemariam","appId":"1:758055765478:android:d524a008aee408560c0227","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"dereje-hailemariam","configurations":{"android":"1:758055765478:android:d524a008aee408560c0227","ios":"1:758055765478:ios:d1b0c0573a6456ee0c0227","web":"1:758055765478:web:ec8252cb0dad43fd0c0227"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "dereje-hailemariam",
+          "appId": "1:758055765478:android:d524a008aee408560c0227",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "dereje-hailemariam",
+          "configurations": {
+            "android": "1:758055765478:android:d524a008aee408560c0227",
+            "ios": "1:758055765478:ios:d1b0c0573a6456ee0c0227",
+            "web": "1:758055765478:web:ec8252cb0dad43fd0c0227"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

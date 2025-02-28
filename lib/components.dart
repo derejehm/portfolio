@@ -383,7 +383,7 @@ class AddDataFirestore {
   CollectionReference response = FirebaseFirestore.instance.collection(
     "message",
   );
-  Future<void> addResponse(
+  Future<bool> addResponse(
     final firstname,
     final lastname,
     final email,
@@ -398,12 +398,12 @@ class AddDataFirestore {
           'phone_number': phone,
           'message': message,
         })
-        .then((onValue) => 'Success')
-        .catchError((error) => 'Error');
+        .then((onValue) => true)
+        .catchError((error) => false);
   }
 }
 
-Future DialogError(BuildContext context) {
+Future DialogError(BuildContext context, String title) {
   return showDialog(
     context: context,
     builder:
@@ -411,7 +411,7 @@ Future DialogError(BuildContext context) {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          title: SanBold("Message Submitted", 20.0),
+          title: SanBold(title, 20.0),
         ),
   );
 }
