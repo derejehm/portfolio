@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/components.dart';
@@ -48,15 +49,26 @@ class _BlogMobileState extends State<BlogMobile> {
               ),
             ];
           },
-          body: ListView(
-            children: [
-              BlogPost(),
-              BlogPost(),
-              BlogPost(),
-              BlogPost(),
-              BlogPost(),
-              SizedBox(height: 20.0),
-            ],
+          body: StreamBuilder(
+            stream:
+                FirebaseFirestore.instance.collection("articles").snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    DocumentSnapshot documentSnapshot =
+                        snapshot.data!.docs[index];
+                    return BlogPost(
+                      title: documentSnapshot['title'],
+                      body: documentSnapshot['body'],
+                    );
+                  },
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
           ),
         ),
       ),
@@ -65,7 +77,9 @@ class _BlogMobileState extends State<BlogMobile> {
 }
 
 class BlogPost extends StatefulWidget {
-  const BlogPost({super.key});
+  final title;
+  final body;
+  const BlogPost({super.key, this.title, this.body});
 
   @override
   State<BlogPost> createState() => _BlogPostState();
@@ -99,7 +113,7 @@ class _BlogPostState extends State<BlogPost> {
                     borderRadius: BorderRadius.circular(3.0),
                   ),
                   child: AbelCustom(
-                    text: "Who is Dash?",
+                    text: widget.title,
                     size: 25.0,
                     color: Colors.white,
                   ),
@@ -119,7 +133,7 @@ class _BlogPostState extends State<BlogPost> {
             ),
             SizedBox(height: 7.0),
             Text(
-              "As soon as Shams Zakhour started working as a Dart writer at Google in December 2013, she started advocating for a Dart mascot. After documenting Java for 14 years, she had observed how beloved the Java mascot, Duke, had become, and she wanted something similar for Dart.",
+              widget.body,
               style: GoogleFonts.openSans(fontSize: 15.0),
               maxLines: expand ? null : 3,
               overflow: expand ? TextOverflow.visible : TextOverflow.ellipsis,

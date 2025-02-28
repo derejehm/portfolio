@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "758055765478",
+    "project_id": "dereje-hailemariam",
+    "storage_bucket": "dereje-hailemariam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758055765478:android:d524a008aee408560c0227",
+        "android_client_info": {
+          "package_name": "hailemariam013.com.portfolio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXPQb0_OLfDvCpVCF7sITnnVchmKrhptg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

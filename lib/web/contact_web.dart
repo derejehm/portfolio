@@ -9,6 +9,13 @@ class ContactWeb extends StatefulWidget {
 }
 
 class _ContactWebState extends State<ContactWeb> {
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastnameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
+
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -50,65 +57,107 @@ class _ContactWebState extends State<ContactWeb> {
           ];
         },
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 30.0),
-              SanBold("Contact Me", 40.0),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      TextForm(
-                        heading: "First Name",
-                        hintText: "Please enter your first name",
-                        width: 350,
-                      ),
-                      SizedBox(height: 15.0),
-                      TextForm(
-                        heading: "Email",
-                        hintText: "Please enter your E-mail",
-                        width: 350,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      TextForm(
-                        heading: "Last Name",
-                        hintText: "Please enter your last name",
-                        width: 350,
-                      ),
-                      SizedBox(height: 15.0),
-                      TextForm(
-                        heading: "Phone number",
-                        hintText: "Please enter your phone number",
-                        width: 350,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              TextForm(
-                heading: "Message",
-                width: widthDevice / 1.5,
-                maxLine: 10.0,
-                hintText: "Please enter your message",
-              ),
-              SizedBox(height: 20.0),
-              MaterialButton(
-                elevation: 20.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          child: Form(
+            key: formkey,
+            child: Column(
+              children: [
+                SizedBox(height: 30.0),
+                SanBold("Contact Me", 40.0),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        TextForm(
+                          heading: "First Name",
+                          hintText: "Please enter your first name",
+                          controller: _firstnameController,
+                          validator: (text) {
+                            if (text.toString().isEmpty) {
+                              return "First name is required.";
+                            }
+                          },
+                          width: 350,
+                        ),
+                        SizedBox(height: 15.0),
+                        TextForm(
+                          heading: "Email",
+                          hintText: "Please enter your E-mail",
+                          controller: _emailController,
+                          validator: (text) {
+                            if (text.toString().isEmpty) {
+                              return "Email is required.";
+                            }
+                          },
+                          width: 350,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        TextForm(
+                          heading: "Last Name",
+                          hintText: "Please enter your last name",
+                          controller: _lastnameController,
+
+                          width: 350,
+                        ),
+                        SizedBox(height: 15.0),
+                        TextForm(
+                          heading: "Phone number",
+                          hintText: "Please enter your phone number",
+                          controller: _phoneController,
+                          validator: (text) {
+                            if (text.toString().isEmpty) {
+                              return "Phone number is required.";
+                            }
+                          },
+                          width: 350,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                height: 60.0,
-                minWidth: 200.0,
-                color: Colors.greenAccent,
-                child: SanBold("Submit", 20.0),
-                onPressed: () {},
-              ),
-            ],
+                TextForm(
+                  heading: "Message",
+                  width: widthDevice / 1.5,
+                  maxLine: 10.0,
+                  hintText: "Please enter your message",
+                  controller: _messageController,
+                  validator: (text) {
+                    if (text.toString().isEmpty) {
+                      return "Message is required.";
+                    }
+                  },
+                ),
+                SizedBox(height: 20.0),
+                MaterialButton(
+                  elevation: 20.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  height: 60.0,
+                  minWidth: 200.0,
+                  color: Colors.greenAccent,
+                  child: SanBold("Submit", 20.0),
+                  onPressed: () async {
+                    final addData = new AddDataFirestore();
+                    if (formkey.currentState!.validate()) {
+                      await addData.addResponse(
+                        _firstnameController.text,
+                        _lastnameController.text,
+                        _emailController.text,
+                        _phoneController.text,
+                        _messageController.text,
+                      );
+                      formkey.currentState!.reset();
+                      DialogError(context);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

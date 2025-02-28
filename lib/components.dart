@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -154,12 +155,17 @@ class TextForm extends StatelessWidget {
   final width;
   final hintText;
   final maxLine;
+  final controller;
+  final validator;
+
   const TextForm({
     super.key,
     @required this.heading,
     @required this.width,
     @required this.hintText,
     this.maxLine,
+    this.controller,
+    this.validator,
   });
 
   @override
@@ -173,11 +179,17 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: width,
           child: TextFormField(
-            maxLines: maxLine == null ? null : maxLine,
+            controller: controller,
+            validator: validator,
+            maxLines: maxLine,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.green),
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 2),
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.greenAccent, width: 2),
@@ -302,14 +314,14 @@ class DrawerWeb extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               urlLauncher(
-                "instagram.svg",
+                "assets/instagram.svg",
                 "https://www.instagram.com/dereje013/",
               ),
               urlLauncher(
-                "linkedin.svg",
+                "assets/linkedin.svg",
                 "https://www.linkedin.com/in/dereje-hailemariam-3876a112a/",
               ),
-              urlLauncher("github.svg", "https://github.com/derejehm/"),
+              urlLauncher("assets/github.svg", "https://github.com/derejehm/"),
             ],
           ),
         ],
@@ -351,18 +363,55 @@ class DrawerMobile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               urlLauncher(
-                "instagram.svg",
+                "assets/instagram.svg",
                 "https://www.instagram.com/dereje013/",
               ),
               urlLauncher(
-                "linkedin.svg",
+                "assets/linkedin.svg",
                 "https://www.linkedin.com/in/dereje-hailemariam-3876a112a/",
               ),
-              urlLauncher("github.svg", "https://github.com/derejehm/"),
+              urlLauncher("assets/github.svg", "https://github.com/derejehm/"),
             ],
           ),
         ],
       ),
     );
   }
+}
+
+class AddDataFirestore {
+  CollectionReference response = FirebaseFirestore.instance.collection(
+    "message",
+  );
+  Future<void> addResponse(
+    final firstname,
+    final lastname,
+    final email,
+    final phone,
+    final message,
+  ) {
+    return response
+        .add({
+          'frist_name': firstname,
+          'last_name': lastname,
+          'email': email,
+          'phone_number': phone,
+          'message': message,
+        })
+        .then((onValue) => 'Success')
+        .catchError((error) => 'Error');
+  }
+}
+
+Future DialogError(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder:
+        (BuildContext context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          title: SanBold("Message Submitted", 20.0),
+        ),
+  );
 }
