@@ -29,21 +29,7 @@ class _WorksWebState extends State<WorksWeb> {
                   filterQuality: FilterQuality.high,
                 ),
               ),
-              title: Row(
-                children: [
-                  Spacer(flex: 3),
-                  TabsWeb(title: "Home", route: "/"),
-                  Spacer(),
-                  TabsWeb(title: "Works", route: "/works"),
-                  Spacer(),
-                  TabsWeb(title: "Blog", route: "/blog"),
-                  Spacer(),
-                  TabsWeb(title: "About", route: "/about"),
-                  Spacer(),
-                  TabsWeb(title: "Contact", route: "/contact"),
-                  Spacer(),
-                ],
-              ),
+              title: TabListWeb(),
             ),
           ];
         },

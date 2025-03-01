@@ -27,21 +27,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Row(
-          children: [
-            Spacer(flex: 3),
-            TabsWeb(title: "Home", route: "/"),
-            Spacer(),
-            TabsWeb(title: "Works", route: "/works"),
-            Spacer(),
-            TabsWeb(title: "Blog", route: "/blog"),
-            Spacer(),
-            TabsWeb(title: "About", route: "/about"),
-            Spacer(),
-            TabsWeb(title: "Contact", route: "/contact"),
-            Spacer(),
-          ],
-        ),
+        title: TabListWeb(),
         iconTheme: IconThemeData(size: 25.0, color: Colors.black),
       ),
       body: ListView(
@@ -253,113 +239,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             ),
           ),
           //Forth Page
-          Container(
-            height: heightDevice,
-            child: Form(
-              key: formkey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SanBold("Contact Me", 40.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          TextForm(
-                            heading: "First Name",
-                            hintText: "Please enter your first name",
-                            controller: _firstnameController,
-                            validator: (text) {
-                              if (text.toString().isEmpty) {
-                                return "First name is required.";
-                              }
-                            },
-                            width: 350,
-                          ),
-                          SizedBox(height: 15.0),
-                          TextForm(
-                            heading: "Email",
-                            hintText: "Please enter your E-mail",
-                            controller: _emailController,
-                            validator: (text) {
-                              if (text.toString().isEmpty) {
-                                return "Email is required.";
-                              }
-                            },
-                            width: 350,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          TextForm(
-                            heading: "Last Name",
-                            hintText: "Please enter your last name",
-                            controller: _lastnameController,
-
-                            width: 350,
-                          ),
-                          SizedBox(height: 15.0),
-                          TextForm(
-                            heading: "Phone number",
-                            hintText: "Please enter your phone number",
-                            controller: _phoneController,
-                            validator: (text) {
-                              if (text.toString().isEmpty) {
-                                return "Phone number is required.";
-                              }
-                            },
-                            width: 350,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  TextForm(
-                    heading: "Message",
-                    width: widthDevice / 1.5,
-                    maxLine: 10.0,
-                    hintText: "Please enter your message",
-                    controller: _messageController,
-                    validator: (text) {
-                      if (text.toString().isEmpty) {
-                        return "Message is required.";
-                      }
-                    },
-                  ),
-                  MaterialButton(
-                    elevation: 20.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    height: 60.0,
-                    minWidth: 200.0,
-                    color: Colors.greenAccent,
-                    child: SanBold("Submit", 20.0),
-                    onPressed: () async {
-                      final addData = new AddDataFirestore();
-                      if (formkey.currentState!.validate()) {
-                        if (await addData.addResponse(
-                          _firstnameController.text,
-                          _lastnameController.text,
-                          _emailController.text,
-                          _phoneController.text,
-                          _messageController.text,
-                        )) {
-                          formkey.currentState!.reset();
-                          DialogError(context, "Message sent successfully");
-                        } else {
-                          formkey.currentState!.reset();
-                          DialogError(context, "Message sent failed");
-                        }
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+          Container(height: heightDevice, child: ContactFromWeb()),
           SizedBox(height: 20.0),
         ],
       ),

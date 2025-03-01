@@ -17,7 +17,7 @@ class _BlogWebState extends State<BlogWeb> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
-        endDrawer: DrawerMobile(),
+        endDrawer: DrawerWeb(),
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
